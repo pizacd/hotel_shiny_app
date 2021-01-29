@@ -1,7 +1,4 @@
 #Shiny topics lecture
-library(DT)
-library(shiny)
-library(shinydashboard)
 
 shinyUI(dashboardPage(
     dashboardHeader(title = 'Hotel Shiny Project'),
@@ -14,26 +11,77 @@ shinyUI(dashboardPage(
     sidebarMenu(
         menuItem('Introduction', tabName = 'intro', icon = icon('info')),
         menuItem('Hotel Revenue',tabName = 'rev', icon = icon('money-bill-wave')), 
+        menuItem('Guest Attributes',tabName = 'guest', icon = icon('hotel')),
         menuItem('Data',tabName = 'data', icon = icon('database')),
         menuItem('About Me', tabName = 'me', icon = icon('portrait'))
-    ),
-    selectizeInput('selected',
-                   'Select Item to Display',
-                   choice)
-    ),
+        
+    )),
     dashboardBody(
         tabItems(
             tabItem(tabName = 'intro',
-                    fluidRow(h1('Intro goes here'))),
+                    fluidPage(
+                        fluidRow(column(offset = 2, width = 8, h1(tags$b('Introduction'),
+                                                                  align = 'center'))),
+                        br(),
+                        
+                        fluidRow(column(width = 12,box(
+                            p('For my project, I found a dataset of hotel reservations on 
+                              Kaggle, which can be found',
+                              tags$a(href = 'https://kaggle.com/jessemostipak/hotel-booking-demand','here.'),
+                             'The dataset was for two hotels in Portugal: a resort hotel in Algarve,
+                             and a city hotel in Lisbon.'),
+                            br(),
+                            p('The purpose of these analyses was to:'))
+                            )),
+                        fluidRow(column(width = 6,
+                            img(src = 'https://image.freepik.com/free-photo/view-ponta-da-piedade-sunrise-algarve-portugal_268835-310.jpg',
+                                                   height = 300, width = 400)),
+                            column(width = 6,
+                            img(src = 'https://img.freepik.com/free-photo/rossio-square-with-wavy-pattern-lisbon-portugal_218319-1161.jpg',
+                                height = 300, width = 400)))
+                        
+                        
+                        
+                        )
+                    ),
+                    
             tabItem(tabName = 'rev',
-                    fluidRow(h1('map goes here'))),
+                    fluidPage(
+                        fluidRow(column(offset = 2, width = 8,
+                                        box(width = 12,h1(tags$b('Revenue by Hotel Type'), 
+                                                          br()),
+                                            align = 'center', background = 'navy')
+                                                          
+                                        )),
+                        fluidRow(
+                            tabBox(width = 6,
+                                   tabPanel('City Revenue',plotOutput('monthly_cityrev'))),
+                            tabBox(width = 6,
+                                   tabPanel('Resort Revenue',plotOutput('monthly_resrev')))
+                        ))),
+            
+            tabItem(tabName = 'guest',
+                    fluidPage(
+                    fluidRow(h1('Guest info go here')),
+                    fluidRow(
+                        tabBox(width = 12,
+                               tabPanel('Guest Nationalities',plotOutput('guest_10')))
+                    ))),
             tabItem(tabName = 'data',
                     fluidRow(h1('DataFrame goes here'))),
             tabItem(tabName = 'me',
-                    fluidRow(h1('Link in bio'))) #output$bio
+                    fluidPage(
+                        fluidRow(p(tags$a(href = 'github.com/pizacd','LinkedIn'))),
+                        br(),
+                        fluidRow(p(tags$a(href = 'linkedin.com/douglas-pizac-ms','GitHub')))
+                        )
+                    )
+            )
+                                        
         )
-        
-    ))
+    )
 )
+     
+
 
 
