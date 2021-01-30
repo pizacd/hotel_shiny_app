@@ -1,8 +1,19 @@
 library(dplyr)
-
+library(lubridate)
 
 #read in data after setting working directory to file location
 hotels <- read.csv('./hotel_bookings.csv')
+
+#concatenate arrival date columns into single column
+month_num = match(hotels$arrival_date_month,month.name) #convert month name to number
+loose_date = paste(hotels$arrival_date_year, month_num, 
+                   hotels$arrival_date_day_of_month)
+
+hotels <- hotels %>% mutate(arrival_date =as.Date(loose_date,'%Y %m %d'))
+
+#calculate booking date
+hotels <- hotels %>% mutate(booking_date = arrival_date - lead_time)
+
 
 #Checking for missing values
 length(which(rowSums(is.na(hotels))>0)) #returns 4 rows
