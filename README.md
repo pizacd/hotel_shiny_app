@@ -6,7 +6,7 @@ It contains hotel reservation data for two hotels in Portugal: a city hotel in L
 ![Algarve, Portugal](https://image.freepik.com/free-photo/view-ponta-da-piedade-sunrise-algarve-portugal_268835-310.jpg)
 
 The objective was to create an R Shiny dashboard to:
-1. Summarize revenue year-by hotel and season. 
+1. Summarize year-over-year revenue by hotel and season. 
 2. Gain insights into the client base, including where they are from, how they book their stays and how far in advance they book these stays.
 3. Evaluate the subset of guests that canceled their reservations prior to check-in, and determine if there are any underlying reasons as to why they made said cancelation.
 
