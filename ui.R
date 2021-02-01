@@ -55,7 +55,7 @@ shinyUI(dashboardPage(
                     br(),
                     br(),
                     'With these insights, we can make better data driven decisions such as who/where to
-                    send advertisements and deals to increase hotel bookings, 
+                    send advertisements and deals to increase hotel 
                     bookings, improve guest retention and increase total revenue.'
                     )
                 )
